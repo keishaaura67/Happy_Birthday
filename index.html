@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Birthday Surprise 🎂</title>
+
+    <style>
+
+        /* =========================
+           PENGATURAN DASAR
+        ========================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Comic Sans MS", Arial, sans-serif;
+            background: linear-gradient(135deg, #ffe6f2, #dff4ff, #fff4c2);
+        }
+
+
+        /* =========================
+           HALAMAN LOGIN
+        ========================= */
+
+        #loginPage {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 450px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            animation: muncul 1s ease;
+        }
+
+        .login-emoji {
+            font-size: 65px;
+            margin-bottom: 15px;
+        }
+
+        .login-box h1 {
+            color: #ff5790;
+            margin-bottom: 10px;
+        }
+
+        .login-box p {
+            color: #777;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Input tanggal */
+
+        input[type="date"] {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid #ffd166;
+            border-radius: 15px;
+            font-size: 16px;
+            font-family: inherit;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        input[type="date"]:focus {
+            border-color: #ff5790;
+        }
+
+        /* Tombol */
+
+        button {
+            background-color: #ff5790;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff3578;
+            transform: scale(1.05);
+        }
+
+        /* Pesan error */
+
+        #pesanError {
+            color: #ff4d6d;
+            margin-top: 15px;
+            display: none;
+        }
+
+
+        /* =========================
+           HALAMAN UTAMA
+        ========================= */
+
+        #mainPage {
+            display: none;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 0;
+        }
+
+        .card {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            animation: muncul 1.2s ease;
+        }
+
+
+        /* =========================
+           JUDUL
+        ========================= */
+
+        h1 {
+            color: #ff5790;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #ff9d32;
+            margin-bottom: 20px;
+        }
+
+        .emoji {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+
+        /* =========================
+           SLIDESHOW FOTO
+        ========================= */
+
+        .slideshow {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 20px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 7px solid #ffd166;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            opacity: 0;
+            transform: scale(1.1);
+
+            animation: fotoMuncul 16s infinite;
+        }
+
+        .slideshow img:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .slideshow img:nth-child(2) {
+            animation-delay: 4s;
+        }
+
+        .slideshow img:nth-child(3) {
+            animation-delay: 8s;
+        }
+
+        .slideshow img:nth-child(4) {
+            animation-delay: 12s;
+        }
+
+
+        /* Animasi foto */
+
+        @keyframes fotoMuncul {
+
+            0% {
+                opacity: 0;
+                transform: scale(1.1);
+            }
+
+            5% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            25% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            30% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+
+        /* =========================
+           UCAPAN
+        ========================= */
+
+        .ucapan {
+            color: #555;
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           TOMBOL MUSIK
+        ========================= */
+
+        .music-button {
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+            color: #999;
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           ANIMASI
+        ========================= */
+
+        @keyframes muncul {
+
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =================================
+         HALAMAN LOGIN
+    ================================== -->
+
+    <div id="loginPage">
+
+        <div class="login-box">
+
+            <div class="login-emoji">
+                🎁🎂
+            </div>
+
+            <h1>Birthday Surprise!</h1>
+
+            <p>
+                Hai! 👋
+                <br>
+                masukkan tanggal lahirmu terlebih dahulu ya! 💕
+            </p>
+
+
+            <!-- Input tanggal lahir -->
+
+            <input
+                type="date"
+                id="tanggalLahir"
+            >
+
+
+            <!-- Tombol masuk -->
+
+            <button onclick="cekTanggal()">
+                🎀 Buka Kejutan
+            </button>
+
+
+            <!-- Pesan ketika salah -->
+
+            <p id="pesanError">
+                Ups! 😅 Tanggal lahirnya belum benar.
+                Coba lagi ya!
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================
+         HALAMAN UTAMA
+    ================================== -->
+
+    <div id="mainPage">
+
+        <div class="card">
+
+            <div class="emoji">
+                🎂 🎉 🎈
+            </div>
+
+
+            <h1>
+                HAPPY BIRTHDAY!
+            </h1>
+
+
+            <h2>
+                Untuk Cila Cilooo 💖
+            </h2>
+
+
+            <!-- Slideshow -->
+
+            <div class="slideshow">
+
+                <img
+                    src="foto.jpeg"
+                    alt="Foto 1"
+                >
+
+                <img
+                    src="foto2.jpeg"
+                    alt="Foto 2"
+                >
+
+                <img
+                    src="foto3.jpeg"
+                    alt="Foto 3"
+                >
+
+                <img
+                    src="foto4.jpeg"
+                    alt="Foto 4"
+                >
+
+            </div>
+
+
+            <!-- Ucapan -->
+
+            <p class="ucapan">
+
+                HAPPY BIRTHDAY CILAAAA🥳🎂
+
+                <br><br>
+
+                Semoga adik selalu sehat,
+                tumbuh menjadi anak yang pintar,
+                baik hati, ceria, dan selalu
+                sayang kepada keluarga. 💕
+
+                <br><br>
+
+                Semoga hari ini penuh dengan
+                kue yang enak, hadiah yang banyak,
+                dan kebahagiaan! 🎁🍰
+
+                <br><br>
+
+                Jangan lupa selalu tersenyum,
+                rajin belajar, dan menjadi anak
+                yang membanggakan ya! 🌈✨
+
+                <br><br>
+
+                <b>
+                    Selamat ulang tahun, CILAAAAA 🎉🎈
+                </b>
+
+            </p>
+
+
+            <!-- =================================
+                 AUDIO
+            ================================== -->
+
+            <audio id="musik" loop>
+
+                <source
+                    src="lagu.mp3"
+                    type="audio/mpeg"
+                >
+
+                Browser kamu tidak mendukung audio.
+
+            </audio>
+
+
+            <!-- Tombol musik -->
+
+            <button
+                class="music-button"
+                onclick="putarMusik()"
+            >
+                🎵 Putar Lagu
+            </button>
+
+
+            <div class="footer">
+                Dibuat dengan ❤️ khusus untuk Cilaaaa
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================
+         JAVASCRIPT
+    ================================== -->
+
+    <script>
+
+        /*
+         * Tanggal lahir yang benar
+         * Format: YYYY-MM-DD
+         *
+         * Contoh:
+         * 2015-09-29
+         */
+
+        const tanggalBenar = "2018-09-29";
+
+
+        /*
+         * Fungsi untuk mengecek
+         * tanggal lahir
+         */
+
+        function cekTanggal() {
+
+            // Mengambil tanggal dari input
+
+            const tanggal =
+                document.getElementById("tanggalLahir").value;
+
+
+            // Mengambil elemen halaman
+
+            const loginPage =
+                document.getElementById("loginPage");
+
+            const mainPage =
+                document.getElementById("mainPage");
+
+            const pesanError =
+                document.getElementById("pesanError");
+
+
+            /*
+             * Membandingkan tanggal
+             */
+
+            if (tanggal === tanggalBenar) {
+
+                // Menghilangkan halaman login
+
+                loginPage.style.display = "none";
+
+
+                // Menampilkan halaman utama
+
+                mainPage.style.display = "flex";
+
+
+            } else {
+
+                // Menampilkan pesan error
+
+                pesanError.style.display = "block";
+
+            }
+
+        }
+
+
+        /*
+         * Fungsi untuk memainkan musik
+         */
+
+        function putarMusik() {
+
+            const musik =
+                document.getElementById("musik");
+
+            const tombol =
+                document.querySelector(".music-button");
+
+
+            /*
+             * Jika musik sedang berhenti
+             */
+
+            if (musik.paused) {
+
+                musik.play();
+
+                tombol.innerHTML =
+                    "⏸️ Pause Lagu";
+
+            }
+
+            /*
+             * Jika musik sedang dimainkan
+             */
+
+            else {
+
+                musik.pause();
+
+                tombol.innerHTML =
+                    "🎵 Putar Lagu";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
